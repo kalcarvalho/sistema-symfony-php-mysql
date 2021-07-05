@@ -6,14 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="Kal Carvalho">
         
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
+            
         {% endblock %}
+
+        <!-- Custom CSS -->
+        <link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet">
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
@@ -22,5 +26,8 @@
     <body>
         {% block body %}{% endblock %}
         {% block scripts %}{% endblock %}
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{{ asset('assets/js/sb-admin-2.js') }}"></script>
     </body>
 </html>

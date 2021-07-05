@@ -10,19 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PerfilRepository::class)
  */
-class Perfil
-{
+class Perfil {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer", unique=true)
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $codigo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -34,35 +29,19 @@ class Perfil
      */
     private $usuarios;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->usuarios = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getCodigo(): ?int
-    {
-        return $this->codigo;
-    }
-
-    public function setCodigo(int $codigo): self
-    {
-        $this->codigo = $codigo;
-
-        return $this;
-    }
-
-    public function getDescricao(): ?string
-    {
+    public function getDescricao(): ?string {
         return $this->descricao;
     }
 
-    public function setDescricao(string $descricao): self
-    {
+    public function setDescricao(string $descricao): self {
         $this->descricao = $descricao;
 
         return $this;
@@ -71,13 +50,11 @@ class Perfil
     /**
      * @return Collection|Usuario[]
      */
-    public function getUsuarios(): Collection
-    {
+    public function getUsuarios(): Collection {
         return $this->usuarios;
     }
 
-    public function addUsuario(Usuario $usuario): self
-    {
+    public function addUsuario(Usuario $usuario): self {
         if (!$this->usuarios->contains($usuario)) {
             $this->usuarios[] = $usuario;
             $usuario->addPerfil($this);
@@ -86,8 +63,7 @@ class Perfil
         return $this;
     }
 
-    public function removeUsuario(Usuario $usuario): self
-    {
+    public function removeUsuario(Usuario $usuario): self {
         if ($this->usuarios->removeElement($usuario)) {
             $usuario->removePerfil($this);
         }

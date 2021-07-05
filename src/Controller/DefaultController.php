@@ -13,12 +13,11 @@ class DefaultController extends AbstractController {
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="app_home")
      */
 
     public function index() {
         return $this->render('login.html.twig');
-        return new Response("Meu Primeiro Controller");
     }
 
 }
